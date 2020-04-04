@@ -1,0 +1,21 @@
+type Query {
+  getTrips: [Trip]
+  trip(id: ID!): Trip
+}
+
+type Mutation {
+  createTrip(createTripInput: CreateTripInput): Trip
+}
+
+# type Subscription {
+#   tripCreated: Trip
+# }
+
+type Trip {
+  id: Int
+  name: String
+}
+
+input CreateTripInput {
+  name: String
+}
