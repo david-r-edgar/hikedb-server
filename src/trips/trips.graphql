@@ -17,6 +17,7 @@ input CreateTripInput {
   name: String
   startDate: Date
   finishDate: Date
+  hikes: [CreateHikeInput]
 }
 
 type Mutation {

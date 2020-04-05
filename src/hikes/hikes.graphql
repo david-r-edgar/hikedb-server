@@ -24,6 +24,7 @@ input CreateHikeInput {
   finishDate: Date
   type: HikeType
   tags: [String]
+  segments: [CreateSegmentInput]
 }
 
 type Query {

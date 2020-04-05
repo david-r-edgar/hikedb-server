@@ -21,6 +21,7 @@ export class CreateHikeInput {
     finishDate?: Date;
     type?: HikeType;
     tags?: string[];
+    segments?: CreateSegmentInput[];
 }
 
 export class CreateSegmentInput {
@@ -42,6 +43,7 @@ export class CreateTripInput {
     name?: string;
     startDate?: Date;
     finishDate?: Date;
+    hikes?: CreateHikeInput[];
 }
 
 export class Hike {
