@@ -1,0 +1,36 @@
+
+enum HikeType {
+  DayHike
+  Camping
+  Hostelling
+  NightHike
+  GuidedTour
+  Challenge
+}
+
+type Hike {
+  id: Int
+  name: String
+  startDate: Date
+  finishDate: Date
+  type: HikeType
+  tags: [String]
+  segments: [Segment]
+}
+
+input CreateHikeInput {
+  name: String
+  startDate: Date
+  finishDate: Date
+  type: HikeType
+  tags: [String]
+}
+
+type Query {
+  getHikes: [Hike]
+  hike(id: ID!): Hike
+}
+
+type Mutation {
+  createHike(createHikeInput: CreateHikeInput): Hike
+}

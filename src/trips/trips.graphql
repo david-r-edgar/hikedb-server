@@ -1,6 +1,22 @@
+scalar Date
+
+type Trip {
+  id: Int
+  name: String
+  startDate: Date
+  finishDate: Date
+  hikes: [Hike]
+}
+
 type Query {
   getTrips: [Trip]
   trip(id: ID!): Trip
+}
+
+input CreateTripInput {
+  name: String
+  startDate: Date
+  finishDate: Date
 }
 
 type Mutation {
@@ -10,12 +26,3 @@ type Mutation {
 # type Subscription {
 #   tripCreated: Trip
 # }
-
-type Trip {
-  id: Int
-  name: String
-}
-
-input CreateTripInput {
-  name: String
-}

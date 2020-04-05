@@ -3,7 +3,7 @@ import { Trip } from '../graphql.schema';
 
 @Injectable()
 export class TripsService {
-  private readonly trips: Trip[] = [{ id: 1, name: 'Trip' }];
+  private readonly trips: Trip[] = [{ id: 1, name: 'Trip', startDate: new Date('2000-01-01'), finishDate: new Date('2000-01-10') }];
 
   create(trip: Trip): Trip {
     trip.id = this.trips.length + 1;

@@ -1,0 +1,41 @@
+
+
+type Segment {
+  id: Int
+  primaryDate: Date
+  indexInDay: Int
+  startDate: Date
+  finishDate: Date
+  startLocation: String
+  finishLocation: String
+  route: String
+  weather: String
+  people: String
+  lengthKm: Float
+  tags: [String]
+  comments: String
+}
+
+input CreateSegmentInput {
+  primaryDate: Date
+  indexInDay: Int
+  startDate: Date
+  finishDate: Date
+  startLocation: String
+  finishLocation: String
+  route: String
+  weather: String
+  people: String
+  lengthKm: Float
+  tags: [String]
+  comments: String
+}
+
+type Query {
+  getSegments: [Segment]
+  segment(id: ID!): Segment
+}
+
+type Mutation {
+  createSegment(createSegmentInput: CreateSegmentInput): Segment
+}
