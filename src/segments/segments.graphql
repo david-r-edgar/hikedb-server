@@ -1,7 +1,7 @@
 
 
 type Segment {
-  id: Int
+  id: ID
   primaryDate: Date
   indexInDay: Int
   startDate: Date

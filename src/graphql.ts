@@ -47,7 +47,7 @@ export class CreateTripInput {
 }
 
 export class Hike {
-    id?: number;
+    id?: string;
     name?: string;
     startDate?: Date;
     finishDate?: Date;
@@ -79,7 +79,7 @@ export abstract class IMutation {
 }
 
 export class Segment {
-    id?: number;
+    id?: string;
     primaryDate?: Date;
     indexInDay?: number;
     startDate?: Date;
@@ -95,7 +95,7 @@ export class Segment {
 }
 
 export class Trip {
-    id?: number;
+    id?: string;
     name?: string;
     startDate?: Date;
     finishDate?: Date;

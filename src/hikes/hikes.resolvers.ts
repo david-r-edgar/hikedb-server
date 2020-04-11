@@ -1,4 +1,4 @@
-import { ParseIntPipe, UseGuards } from '@nestjs/common';
+// import { ParseIntPipe, UseGuards } from '@nestjs/common';
 import { Args, Mutation, Query, Resolver, Subscription } from '@nestjs/graphql';
 import { Hike } from '../graphql.schema';
 import { HikesService } from './hikes.service';
@@ -15,8 +15,8 @@ export class HikesResolvers {
 
   @Query('hike')
   async findOneById(
-    @Args('id', ParseIntPipe)
-    id: number,
+    @Args('id')
+    id: string,
   ): Promise<Hike> {
     return this.hikesService.findOneById(id);
   }

@@ -9,7 +9,7 @@ enum HikeType {
 }
 
 type Hike {
-  id: Int
+  id: ID
   name: String
   startDate: Date
   finishDate: Date

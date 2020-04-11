@@ -21,7 +21,7 @@ export class TripsResolvers {
   @Query('trip')
   async findOneById(
     @Args('id', ParseIntPipe)
-    id: number,
+    id: string,
   ): Promise<Trip> {
     return this.tripsService.findOneById(id);
   }
