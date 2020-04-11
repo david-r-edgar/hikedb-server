@@ -4,6 +4,8 @@ import { CreateTripInput } from '../../graphql.schema';
 // export class CreateTripDto extends CreateTripInput {
 // }
 
-export class CreateTripDto {
-  readonly name: string
+export class CreateTripDto extends CreateTripInput {
+  // readonly name: string
+  // readonly startDate: Date
+  // readonly finishDate: Date
 }

@@ -9,7 +9,3 @@ import { TripSchema } from './schemas/trip.schema';
   providers: [TripsService, TripsResolvers],
 })
 export class TripsModule {}
-
-
-
-
