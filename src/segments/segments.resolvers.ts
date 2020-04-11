@@ -15,7 +15,7 @@ export class SegmentsResolvers {
 
   @Query('segment')
   async findOneById(
-    @Args('id', ParseIntPipe)
+    @Args('id')
     id: string,
   ): Promise<Segment> {
     return this.segmentsService.findOneById(id);
