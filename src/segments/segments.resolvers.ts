@@ -8,10 +8,10 @@ import { SegmentsService } from './segments.service';
 export class SegmentsResolvers {
   constructor(private readonly segmentsService: SegmentsService) {}
 
-  @Query()
-  async getSegments() {
-    return this.segmentsService.findAll();
-  }
+  // @Query()
+  // async getSegments() {
+  //   return this.segmentsService.findAll();
+  // }
 
   @Query('segment')
   async findOneById(

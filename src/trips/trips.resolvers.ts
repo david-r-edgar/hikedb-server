@@ -18,6 +18,12 @@ export class TripsResolvers {
     return this.tripsService.findAll();
   }
 
+  @Query()
+  async getSegments() {
+    console.log('getSegments')
+    return this.tripsService.findAllSegments()
+  }
+
   @Query('trip')
   async findOneById(
     @Args('id')

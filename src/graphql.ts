@@ -46,6 +46,12 @@ export class CreateTripInput {
     hikes?: CreateHikeInput[];
 }
 
+export class CreateWaypointInput {
+    name?: string;
+    lat?: number;
+    lng?: number;
+}
+
 export class Hike {
     id?: string;
     name?: string;
@@ -68,6 +74,10 @@ export abstract class IQuery {
     abstract getTrips(): Trip[] | Promise<Trip[]>;
 
     abstract trip(id: string): Trip | Promise<Trip>;
+
+    abstract getWaypoints(): Waypoint[] | Promise<Waypoint[]>;
+
+    abstract waypoint(id: string): Waypoint | Promise<Waypoint>;
 }
 
 export abstract class IMutation {
@@ -76,6 +86,8 @@ export abstract class IMutation {
     abstract createSegment(createSegmentInput?: CreateSegmentInput): Segment | Promise<Segment>;
 
     abstract createTrip(createTripInput?: CreateTripInput): Trip | Promise<Trip>;
+
+    abstract createWaypoint(createWaypointInput?: CreateWaypointInput): Waypoint | Promise<Waypoint>;
 }
 
 export class Segment {
@@ -100,4 +112,11 @@ export class Trip {
     startDate?: Date;
     finishDate?: Date;
     hikes?: Hike[];
+}
+
+export class Waypoint {
+    id?: string;
+    name?: string;
+    lat?: number;
+    lng?: number;
 }

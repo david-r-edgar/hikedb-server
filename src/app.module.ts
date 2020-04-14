@@ -7,6 +7,7 @@ import { join } from 'path'
 import { TripsModule } from './trips/trips.module';
 import { HikesModule } from './hikes/hikes.module';
 import { SegmentsModule } from './segments/segments.module';
+import { WaypointsModule } from './waypoints/waypoints.module';
 
 const mongoConnectURL = 'mongodb+srv://hikedb:GyyXK9Hp06mjfrEf@cluster0-82r89.gcp.mongodb.net/hikedb'
 
@@ -15,6 +16,7 @@ const mongoConnectURL = 'mongodb+srv://hikedb:GyyXK9Hp06mjfrEf@cluster0-82r89.gc
     TripsModule,
     HikesModule,
     SegmentsModule,
+    WaypointsModule,
     GraphQLModule.forRoot({
       typePaths: ['./**/*.graphql'],
       definitions: {

@@ -25,23 +25,32 @@ import { Model } from 'mongoose';
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Trip } from './interfaces/trip.interface';
+import { Segment } from '../segments/interfaces/segment.interface';
 // import { Hike } from '../graphql.schema';
 import { CreateTripDto } from './dto/create-trip.dto';
 
 @Injectable()
 export class TripsService {
-  constructor(@InjectModel('Trip') private hikeModel: Model<Trip>) {}
+  constructor(@InjectModel('Trip') private tripModel: Model<Trip>) {}
 
   async create(createTripDto: CreateTripDto): Promise<Trip> {
-    const createdTrip = new this.hikeModel(createTripDto);
+    const createdTrip = new this.tripModel(createTripDto);
     return createdTrip.save();
   }
 
   async findAll(): Promise<Trip[]> {
-    return this.hikeModel.find().exec();
+    return this.tripModel.find().exec();
+  }
+
+  async findAllSegments(): Promise<Segment[]> {
+    const results = await this.tripModel.find({ 'hikes.segments': { $exists: true, $ne: [] } }, {'hikes.segments': 1 , _id: 0}).exec()
+    console.log({results})
+    console.log({results0hikes: results[0].hikes})
+    console.log({results0hikes: results[0].hikes[0]})
+    return null
   }
 
   async findOneById(id: string): Promise<Trip> {
-    return this.hikeModel.findOne({ _id: id }).exec()
+    return this.tripModel.findOne({ _id: id }).exec()
   }
 }
