@@ -1,4 +1,5 @@
 import { Document } from 'mongoose';
+import { Waypoint } from '../../waypoints/interfaces/waypoint.interface'
 
 export interface Segment extends Document {
   readonly primaryDate: Date,
@@ -13,4 +14,5 @@ export interface Segment extends Document {
   readonly lengthKm: number,
   readonly tags: [string],
   readonly comments: string
+  readonly waypoints: [Waypoint]
 }

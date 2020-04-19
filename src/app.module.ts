@@ -9,7 +9,7 @@ import { HikesModule } from './hikes/hikes.module';
 import { SegmentsModule } from './segments/segments.module';
 import { WaypointsModule } from './waypoints/waypoints.module';
 
-const mongoConnectURL = 'mongodb+srv://hikedb:GyyXK9Hp06mjfrEf@cluster0-82r89.gcp.mongodb.net/hikedb'
+const mongoConnectURL = `mongodb+srv://${process.env.MONGOUSER}:${process.env.MONGOPASS}@${process.env.MONGODB}`
 
 @Module({
   imports: [

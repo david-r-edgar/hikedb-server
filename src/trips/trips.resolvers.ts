@@ -20,7 +20,6 @@ export class TripsResolvers {
 
   @Query()
   async getSegments() {
-    console.log('getSegments')
     return this.tripsService.findAllSegments()
   }
 

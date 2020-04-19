@@ -12,15 +12,15 @@ type Query {
   waypoint(id: ID!): Waypoint
 }
 
-input CreateWaypointInput {
+input WaypointDetailsInput {
   name: String
   lat: Float
   lng: Float
 }
 
-type Mutation {
-  createWaypoint(createWaypointInput: CreateWaypointInput): Waypoint
-}
+# type Mutation {
+#   createWaypoint(createWaypointInput: CreateWaypointInput): Waypoint#
+# }
 
 # type Subscription {
 #   waypointCreated: Waypoint

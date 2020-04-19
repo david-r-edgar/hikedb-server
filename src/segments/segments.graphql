@@ -14,6 +14,7 @@ type Segment {
   lengthKm: Float
   tags: [String]
   comments: String
+  waypoints: [Waypoint]
 }
 
 input CreateSegmentInput {
@@ -29,7 +30,19 @@ input CreateSegmentInput {
   lengthKm: Float
   tags: [String]
   comments: String
+  waypoints: [WaypointDetailsInput]
 }
+
+input UpdateSegmentInput {
+  id: ID
+  patch: CreateSegmentInput
+}
+
+# input WaypointDetailsInput {
+#   name: String
+#   lat: Float
+#   lng: Float
+# }
 
 type Query {
   getSegments: [Segment]
@@ -37,5 +50,21 @@ type Query {
 }
 
 type Mutation {
-  createSegment(createSegmentInput: CreateSegmentInput): Segment
+  updateSegment(updateSegmentInput: UpdateSegmentInput): Segment
 }
+
+# type Mutation {
+#   createSegment(createSegmentInput: CreateSegmentInput): Segment
+#   insertNewWaypoint(
+#     segmentId: ID
+#     waypointDetailsInput: CreateWaypointInput
+#     insertBefore: ID
+#     insertAfter: ID
+#   ): Segment
+#   insertExistingWaypoint(
+#     segmentId: ID
+#     waypointId: ID
+#     insertBefore: ID
+#     insertAfter: ID
+#   ): Segment
+# }

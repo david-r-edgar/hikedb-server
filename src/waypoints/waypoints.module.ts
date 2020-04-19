@@ -7,5 +7,6 @@ import { WaypointSchema } from './schemas/waypoint.schema';
 @Module({
   imports: [MongooseModule.forFeature([{ name: 'Waypoint', schema: WaypointSchema }])],
   providers: [WaypointsService, WaypointsResolvers],
+  exports: [WaypointsService, MongooseModule]
 })
 export class WaypointsModule {}

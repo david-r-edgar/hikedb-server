@@ -1,5 +1,5 @@
 // import { Min } from 'class-validator';
-import { CreateWaypointInput } from '../../graphql.schema';
+import { WaypointDetailsInput } from '../../graphql.schema';
 
-export class CreateWaypointDto extends CreateWaypointInput {
+export class CreateWaypointDto extends WaypointDetailsInput {
 }

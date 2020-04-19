@@ -26,10 +26,10 @@ export class WaypointsResolvers {
     return this.waypointsService.findOneById(id);
   }
 
-  @Mutation('createWaypoint')
-  async create(@Args('createWaypointInput') args: CreateWaypointDto): Promise<Waypoint> {
-    const createdWaypoint = await this.waypointsService.create(args);
-    // pubSub.publish('waypointCreated', { waypointCreated: createdWaypoint });
-    return createdWaypoint;
-  }
+  // @Mutation('createWaypoint')
+  // async create(@Args('createWaypointInput') args: CreateWaypointDto): Promise<Waypoint> {
+  //   const createdWaypoint = await this.waypointsService.create(args);
+  //   // pubSub.publish('waypointCreated', { waypointCreated: createdWaypoint });
+  //   return createdWaypoint;
+  // }
 }
