@@ -12,7 +12,9 @@ export interface Segment extends Document {
   readonly weather: string,
   readonly people: string,
   readonly lengthKm: number,
+  readonly comments: string,
+  readonly waypoints: [Waypoint],
   readonly tags: [string],
-  readonly comments: string
-  readonly waypoints: [Waypoint]
+  readonly hikeName: string,
+  readonly tripName: string
 }

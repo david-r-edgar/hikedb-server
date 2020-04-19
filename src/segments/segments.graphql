@@ -1,5 +1,38 @@
 
 
+enum Transport {
+  Train
+  Bus
+  Taxi
+  Car
+  Bicycle
+  Boat
+}
+
+enum Accommodation {
+  WildCamp
+  Campsite
+  Hostel
+  MountainHut
+  Bothy
+  Hotel
+  BedAndBreakfast
+  Bivy
+}
+
+type Waypoint {
+  id: ID
+  name: String
+  lat: Float
+  lng: Float
+}
+
+input WaypointDetailsInput {
+  name: String
+  lat: Float
+  lng: Float
+}
+
 type Segment {
   id: ID
   primaryDate: Date
@@ -8,13 +41,19 @@ type Segment {
   finishDate: Date
   startLocation: String
   finishLocation: String
+  # transportToStart: [Transport]
+  # transportFromFinish: [Transport]
+  # accommodationAtStart: Accommodation
+  # accommodationAtFinish: Accommodation
   route: String
   weather: String
   people: String
   lengthKm: Float
-  tags: [String]
   comments: String
   waypoints: [Waypoint]
+  tags: [String]
+  hikeName: String
+  tripName: String
 }
 
 input CreateSegmentInput {
@@ -28,21 +67,57 @@ input CreateSegmentInput {
   weather: String
   people: String
   lengthKm: Float
-  tags: [String]
   comments: String
   waypoints: [WaypointDetailsInput]
+  tags: [String]
+  hikeName: String   # encompassing hike if any (eg. GR20, Sierra Nevada)
+  tripName: String   # overall trip (eg. Corsica)
+}
+
+input UpdateSegmentDetails {
+  primaryDate: Date
+  indexInDay: Int
+  startDate: Date
+  finishDate: Date
+  startLocation: String
+  finishLocation: String
+  route: String
+  weather: String
+  people: String
+  lengthKm: Float
+  comments: String
+  waypoints: [WaypointDetailsInput]
+  tags: [String]
+  hikeName: String
+  tripName: String
 }
 
 input UpdateSegmentInput {
   id: ID
-  patch: CreateSegmentInput
+  patch: UpdateSegmentDetails
 }
 
-# input WaypointDetailsInput {
-#   name: String
-#   lat: Float
-#   lng: Float
-# }
+input DeleteSegmentInput {
+  id: ID
+}
+
+input InsertWaypointInput {
+  segmentId: ID
+  waypointDetailsInput: WaypointDetailsInput
+  insertBefore: ID
+  insertAfter: ID
+}
+
+input DeleteWaypointInput {
+  segmentId: ID
+  waypointId: ID
+}
+
+input UpdateWaypointInput {
+  segmentId: ID
+  waypointId: ID
+  waypointDetailsInput: WaypointDetailsInput
+}
 
 type Query {
   getSegments: [Segment]
@@ -50,7 +125,12 @@ type Query {
 }
 
 type Mutation {
+  createSegment(createSegmentInput: CreateSegmentInput): Segment
   updateSegment(updateSegmentInput: UpdateSegmentInput): Segment
+  deleteSegment(deleteSegmentInput: DeleteSegmentInput): Boolean
+  insertWaypoint(insertWaypointInput: InsertWaypointInput): Segment
+  updateWaypoint(updateWaypointInput: UpdateWaypointInput): Segment
+  deleteWaypoint(deleteWaypointInput: DeleteWaypointInput): Segment
 }
 
 # type Mutation {

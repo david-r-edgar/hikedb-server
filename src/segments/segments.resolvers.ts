@@ -2,23 +2,21 @@ import { ParseIntPipe, UseGuards } from '@nestjs/common';
 import { Args, Mutation, Query, Resolver, Subscription } from '@nestjs/graphql';
 import { Segment, WaypointDetailsInput } from '../graphql.schema';
 import { SegmentsService } from './segments.service';
-// import { CreateSegmentDto } from './dto/create-segment.dto';
+import { CreateSegmentDto } from './dto/create-segment.dto';
 // import { WaypointsResolvers } from '../waypoints/waypoints.resolvers'
 // import { WaypointsService } from '../waypoints/waypoints.service'
-import { TripsService } from '../trips/trips.service'
 const ObjectId = require('mongodb').ObjectID;
 
 @Resolver('Segment')
 export class SegmentsResolvers {
   constructor(
     private readonly segmentsService: SegmentsService,
-    private readonly tripsService: TripsService
   ) {}
 
-  // @Query()
-  // async getSegments() {
-  //   return this.segmentsService.findAll();
-  // }
+  @Query()
+  async getSegments() {
+    return this.segmentsService.findAll()
+  }
 
   @Query('segment')
   async findOneById(
@@ -26,27 +24,32 @@ export class SegmentsResolvers {
     id: string,
   ): Promise<Segment> {
     return this.segmentsService.findOneById(id);
-
-
   }
 
-  @Mutation('updateSegment')
-  async updateSegment(@Args('updateSegmentInput') args): Promise<Segment> {
-    // find segment by id
-
-
-    const segment = await this.tripsService.findSegmentById(ObjectId('5e9b77a8c4b94831dd3aad2c'))
-
-    console.log('segments resolver update')
-    console.log({segment})
-    //
-
-
-    // const createdSegment = await this.segmentsService.create(args);
-    // return createdSegment;
-
-    return null
+  @Mutation('createSegment')
+  async create(@Args('createSegmentInput') args: CreateSegmentDto): Promise<Segment> {
+    const createdSegment = await this.segmentsService.create(args);
+    // pubSub.publish('segmentCreated', { segmentCreated: createdSegment });
+    return createdSegment;
   }
+
+  // @Mutation('updateSegment')
+  // async updateSegment(@Args('updateSegmentInput') args): Promise<Segment> {
+  //   // find segment by id
+
+
+  //   const segment = await this.segmentsService.findSegmentById(ObjectId('5e9b77a8c4b94831dd3aad2c'))
+
+  //   console.log('segments resolver update')
+  //   console.log({segment})
+  //   //
+
+
+  //   // const createdSegment = await this.segmentsService.create(args);
+  //   // return createdSegment;
+
+  //   return null
+  //  }
 
   // @Mutation('createSegment')
   // async create(@Args('createSegmentInput') args): Promise<Segment> {

@@ -4,8 +4,6 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { join } from 'path'
 // import { AppController } from './app.controller';
 // import { AppService } from './app.service';
-import { TripsModule } from './trips/trips.module';
-import { HikesModule } from './hikes/hikes.module';
 import { SegmentsModule } from './segments/segments.module';
 import { WaypointsModule } from './waypoints/waypoints.module';
 
@@ -13,8 +11,6 @@ const mongoConnectURL = `mongodb+srv://${process.env.MONGOUSER}:${process.env.MO
 
 @Module({
   imports: [
-    TripsModule,
-    HikesModule,
     SegmentsModule,
     WaypointsModule,
     GraphQLModule.forRoot({
