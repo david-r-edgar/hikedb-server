@@ -57,15 +57,7 @@ export class SegmentsResolvers {
 
   @Mutation()
   async deleteWaypoint(@Args('deleteWaypointInput') args: DeleteWaypointDto): Promise<Segment> {
-    // find segment by id
-
-    // find waypoint in segment
-
-    // remove waypoint from array
-
-    // write back segment
-
-    return null
+    return await this.segmentsService.deleteWaypointById(args.segmentId, args.waypointId)
   }
 
 

@@ -55,7 +55,16 @@ export class SegmentsService {
       segment.waypoints.push(waypointToInsert)
     }
     segment.save()
+    return segment
+  }
 
+  async deleteWaypointById(segmentId: string, waypointId: string): Promise<Segment> {
+    const segment = await this.findOneById(segmentId)
+
+    const index = segment.waypoints.findIndex(wpt => wpt.id === waypointId)
+    segment.waypoints.splice(index, 1)
+
+    segment.save()
     return segment
   }
 }
