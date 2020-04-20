@@ -22,7 +22,8 @@ const mongoConnectURL = `mongodb+srv://${process.env.MONGOUSER}:${process.env.MO
     }),
     MongooseModule.forRoot(mongoConnectURL, {
       useNewUrlParser: true,
-      useUnifiedTopology: true
+      useUnifiedTopology: true,
+      useFindAndModify: false
     })
   ],
   // controllers: [AppController],

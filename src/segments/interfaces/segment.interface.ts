@@ -15,6 +15,6 @@ export interface Segment extends Document {
   readonly comments: string,
   readonly waypoints: [Waypoint],
   readonly tags: [string],
-  readonly hikeName: string,
-  readonly tripName: string
+  readonly hike: string,
+  readonly trip: string
 }

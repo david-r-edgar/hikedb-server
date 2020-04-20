@@ -2,10 +2,9 @@ import { ParseIntPipe, UseGuards } from '@nestjs/common';
 import { Args, Mutation, Query, Resolver, Subscription } from '@nestjs/graphql';
 import { Segment, WaypointDetailsInput } from '../graphql.schema';
 import { SegmentsService } from './segments.service';
-import { CreateSegmentDto } from './dto/create-segment.dto';
+import { CreateSegmentDto, UpdateSegmentDto, DeleteSegmentDto, InsertWaypointDto, UpdateWaypointDto, DeleteWaypointDto } from './dto/create-segment.dto';
 // import { WaypointsResolvers } from '../waypoints/waypoints.resolvers'
 // import { WaypointsService } from '../waypoints/waypoints.service'
-const ObjectId = require('mongodb').ObjectID;
 
 @Resolver('Segment')
 export class SegmentsResolvers {
@@ -32,6 +31,41 @@ export class SegmentsResolvers {
     // pubSub.publish('segmentCreated', { segmentCreated: createdSegment });
     return createdSegment;
   }
+
+  @Mutation()
+  async updateSegment(@Args('updateSegmentInput') args: UpdateSegmentDto): Promise<Segment> {
+    const updatedSegment = await this.segmentsService.update(args)
+    return updatedSegment
+  }
+
+  @Mutation()
+  async deleteSegment(@Args('deleteSegmentInput') args: DeleteSegmentDto): Promise<Boolean> {
+    console.log('resolver, deleteSegment', args)
+    return await this.segmentsService.deleteById(args.id)
+  }
+
+  async insertWaypoint(@Args('insertWaypointInput') args: InsertWaypointDto): Promise<Segment> {
+    return null
+  }
+
+  async updateWaypoint(@Args('updateWaypointInput') args: UpdateWaypointDto): Promise<Segment> {
+    return null
+  }
+
+  async deleteWaypoint(@Args('deleteWaypointInput') args: DeleteWaypointDto): Promise<Segment> {
+    // find segment by id
+
+    // find waypoint in segment
+
+    // remove waypoint from array
+
+    // write back segment
+
+    return null
+  }
+
+
+
 
   // @Mutation('updateSegment')
   // async updateSegment(@Args('updateSegmentInput') args): Promise<Segment> {

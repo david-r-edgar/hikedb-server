@@ -15,6 +15,6 @@ export const SegmentSchema = new mongoose.Schema({
   comments: String,
   waypoints: [WaypointSchema],
   tags: [String],
-  hikeName: String,
-  tripName: String
+  hike: String,
+  trip: String
 })

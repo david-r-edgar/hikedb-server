@@ -64,8 +64,8 @@ export class CreateSegmentInput {
     comments?: string;
     waypoints?: WaypointDetailsInput[];
     tags?: string[];
-    hikeName?: string;
-    tripName?: string;
+    hike?: string;
+    trip?: string;
 }
 
 export class UpdateSegmentDetails {
@@ -82,8 +82,8 @@ export class UpdateSegmentDetails {
     comments?: string;
     waypoints?: WaypointDetailsInput[];
     tags?: string[];
-    hikeName?: string;
-    tripName?: string;
+    hike?: string;
+    trip?: string;
 }
 
 export class UpdateSegmentInput {
@@ -188,8 +188,8 @@ export class Segment {
     comments?: string;
     waypoints?: Waypoint[];
     tags?: string[];
-    hikeName?: string;
-    tripName?: string;
+    hike?: string;
+    trip?: string;
 }
 
 export class Trip {

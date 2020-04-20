@@ -52,8 +52,8 @@ type Segment {
   comments: String
   waypoints: [Waypoint]
   tags: [String]
-  hikeName: String
-  tripName: String
+  hike: String   # name of encompassing hike (eg. GR20, Sierra Nevada)
+  trip: String   # name of overall trip (eg. Corsica)
 }
 
 input CreateSegmentInput {
@@ -70,8 +70,8 @@ input CreateSegmentInput {
   comments: String
   waypoints: [WaypointDetailsInput]
   tags: [String]
-  hikeName: String   # encompassing hike if any (eg. GR20, Sierra Nevada)
-  tripName: String   # overall trip (eg. Corsica)
+  hike: String
+  trip: String
 }
 
 input UpdateSegmentDetails {
@@ -88,8 +88,8 @@ input UpdateSegmentDetails {
   comments: String
   waypoints: [WaypointDetailsInput]
   tags: [String]
-  hikeName: String
-  tripName: String
+  hike: String
+  trip: String
 }
 
 input UpdateSegmentInput {
