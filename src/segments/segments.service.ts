@@ -58,6 +58,18 @@ export class SegmentsService {
     return segment
   }
 
+  async updateWaypoint(
+    segmentId: string,
+    waypointId: string,
+    waypointDetailsInput: WaypointDetailsInput
+  ) : Promise<Segment> {
+    const segment = await this.findOneById(segmentId)
+    const index = segment.waypoints.findIndex(wpt => wpt.id === waypointId)
+    Object.assign(segment.waypoints[index], waypointDetailsInput)
+    segment.save()
+    return segment
+  }
+
   async deleteWaypointById(segmentId: string, waypointId: string): Promise<Segment> {
     const segment = await this.findOneById(segmentId)
 

@@ -52,7 +52,7 @@ export class SegmentsResolvers {
 
   @Mutation()
   async updateWaypoint(@Args('updateWaypointInput') args: UpdateWaypointDto): Promise<Segment> {
-    return null
+    return await this.segmentsService.updateWaypoint(args.segmentId, args.waypointId, args.waypointDetailsInput)
   }
 
   @Mutation()
