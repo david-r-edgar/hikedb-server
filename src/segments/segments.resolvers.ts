@@ -18,10 +18,7 @@ export class SegmentsResolvers {
   }
 
   @Query('segment')
-  async findOneById(
-    @Args('id')
-    id: string,
-  ): Promise<Segment> {
+  async findOneById(@Args('id') id: string): Promise<Segment> {
     return this.segmentsService.findOneById(id);
   }
 
@@ -40,18 +37,25 @@ export class SegmentsResolvers {
 
   @Mutation()
   async deleteSegment(@Args('deleteSegmentInput') args: DeleteSegmentDto): Promise<Boolean> {
-    console.log('resolver, deleteSegment', args)
     return await this.segmentsService.deleteById(args.id)
   }
 
+  @Mutation()
   async insertWaypoint(@Args('insertWaypointInput') args: InsertWaypointDto): Promise<Segment> {
-    return null
+    return await this.segmentsService.insertWaypoint(
+      args.segmentId,
+      args.waypointDetailsInput,
+      args.insertBefore,
+      args.insertAfter
+    )
   }
 
+  @Mutation()
   async updateWaypoint(@Args('updateWaypointInput') args: UpdateWaypointDto): Promise<Segment> {
     return null
   }
 
+  @Mutation()
   async deleteWaypoint(@Args('deleteWaypointInput') args: DeleteWaypointDto): Promise<Segment> {
     // find segment by id
 

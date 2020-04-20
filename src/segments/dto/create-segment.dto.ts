@@ -1,4 +1,4 @@
-import { CreateSegmentInput, UpdateSegmentInput, DeleteSegmentInput, InsertWaypointInput, UpdateWaypointInput, DeleteWaypointInput } from '../../graphql.schema';
+import { CreateSegmentInput, UpdateSegmentInput, DeleteSegmentInput, InsertWaypointInput, UpdateWaypointInput, DeleteWaypointInput } from '../../graphql';
 
 export class CreateSegmentDto extends CreateSegmentInput {
 }
