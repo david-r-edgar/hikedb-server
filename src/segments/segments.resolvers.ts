@@ -1,10 +1,8 @@
 import { ParseIntPipe, UseGuards } from '@nestjs/common';
 import { Args, Mutation, Query, Resolver, Subscription } from '@nestjs/graphql';
-import { Segment, WaypointDetailsInput } from '../graphql.schema';
+import { Segment } from '../graphql';
 import { SegmentsService } from './segments.service';
 import { CreateSegmentDto, UpdateSegmentDto, DeleteSegmentDto, InsertWaypointDto, UpdateWaypointDto, DeleteWaypointDto } from './dto/create-segment.dto';
-// import { WaypointsResolvers } from '../waypoints/waypoints.resolvers'
-// import { WaypointsService } from '../waypoints/waypoints.service'
 
 @Resolver('Segment')
 export class SegmentsResolvers {

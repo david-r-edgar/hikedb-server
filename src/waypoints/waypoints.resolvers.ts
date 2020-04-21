@@ -1,7 +1,7 @@
 import { ParseIntPipe, UseGuards } from '@nestjs/common';
 import { Args, Mutation, Query, Resolver, Subscription } from '@nestjs/graphql';
 // import { PubSub } from 'graphql-subscriptions';
-import { Waypoint } from '../graphql.schema';
+import { Waypoint } from '../graphql';
 // import { WaypointsGuard } from './waypoints.guard';
 import { WaypointsService } from './waypoints.service';
 import { CreateWaypointDto } from './dto/create-waypoint.dto';

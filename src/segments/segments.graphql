@@ -23,26 +23,26 @@ enum Accommodation {
 type Waypoint {
   id: ID
   name: String
-  lat: Float
-  lng: Float
+  lat: Float!
+  lng: Float!
 }
 
 input WaypointDetailsInput {
   name: String
-  lat: Float
-  lng: Float
+  lat: Float!
+  lng: Float!
 }
 
 type Segment {
   id: ID
-  primaryDate: Date
+  primaryDate: Date!
   indexInDay: Int
   startDate: Date
   finishDate: Date
   startLocation: String
   finishLocation: String
-  # transportToStart: [Transport]
-  # transportFromFinish: [Transport]
+  # transportToStart: [Transport!]
+  # transportFromFinish: [Transport!]
   # accommodationAtStart: Accommodation
   # accommodationAtFinish: Accommodation
   route: String
@@ -50,14 +50,14 @@ type Segment {
   people: String
   lengthKm: Float
   comments: String
-  waypoints: [Waypoint]
-  tags: [String]
+  waypoints: [Waypoint!]
+  tags: [String!]
   hike: String   # name of encompassing hike (eg. GR20, Sierra Nevada)
   trip: String   # name of overall trip (eg. Corsica)
 }
 
 input CreateSegmentInput {
-  primaryDate: Date
+  primaryDate: Date!
   indexInDay: Int
   startDate: Date
   finishDate: Date
@@ -68,8 +68,8 @@ input CreateSegmentInput {
   people: String
   lengthKm: Float
   comments: String
-  waypoints: [WaypointDetailsInput]
-  tags: [String]
+  waypoints: [WaypointDetailsInput!]
+  tags: [String!]
   hike: String
   trip: String
 }
@@ -86,8 +86,8 @@ input UpdateSegmentDetails {
   people: String
   lengthKm: Float
   comments: String
-  waypoints: [WaypointDetailsInput]
-  tags: [String]
+  waypoints: [WaypointDetailsInput!]
+  tags: [String!]
   hike: String
   trip: String
 }

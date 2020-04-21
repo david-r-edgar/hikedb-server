@@ -28,12 +28,12 @@ export enum Accommodation {
 
 export class WaypointDetailsInput {
     name?: string;
-    lat?: number;
-    lng?: number;
+    lat: number;
+    lng: number;
 }
 
 export class CreateSegmentInput {
-    primaryDate?: Date;
+    primaryDate: Date;
     indexInDay?: number;
     startDate?: Date;
     finishDate?: Date;
@@ -98,13 +98,13 @@ export class UpdateWaypointInput {
 export class Waypoint {
     id?: string;
     name?: string;
-    lat?: number;
-    lng?: number;
+    lat: number;
+    lng: number;
 }
 
 export class Segment {
     id?: string;
-    primaryDate?: Date;
+    primaryDate: Date;
     indexInDay?: number;
     startDate?: Date;
     finishDate?: Date;
