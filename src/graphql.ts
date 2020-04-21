@@ -6,15 +6,6 @@
 
 /* tslint:disable */
 /* eslint-disable */
-export enum HikeType {
-    DayHike = "DayHike",
-    Camping = "Camping",
-    Hostelling = "Hostelling",
-    NightHike = "NightHike",
-    GuidedTour = "GuidedTour",
-    Challenge = "Challenge"
-}
-
 export enum Transport {
     Train = "Train",
     Bus = "Bus",
@@ -33,15 +24,6 @@ export enum Accommodation {
     Hotel = "Hotel",
     BedAndBreakfast = "BedAndBreakfast",
     Bivy = "Bivy"
-}
-
-export class CreateHikeInput {
-    name?: string;
-    startDate?: Date;
-    finishDate?: Date;
-    type?: HikeType;
-    tags?: string[];
-    segments?: CreateSegmentInput[];
 }
 
 export class WaypointDetailsInput {
@@ -113,59 +95,6 @@ export class UpdateWaypointInput {
     waypointDetailsInput?: WaypointDetailsInput;
 }
 
-export class CreateTripInput {
-    name?: string;
-    startDate?: Date;
-    finishDate?: Date;
-    hikes?: CreateHikeInput[];
-}
-
-export class Hike {
-    id?: string;
-    name?: string;
-    startDate?: Date;
-    finishDate?: Date;
-    type?: HikeType;
-    tags?: string[];
-    segments?: Segment[];
-}
-
-export abstract class IQuery {
-    abstract getHikes(): Hike[] | Promise<Hike[]>;
-
-    abstract hike(id: string): Hike | Promise<Hike>;
-
-    abstract getSegments(): Segment[] | Promise<Segment[]>;
-
-    abstract segment(id: string): Segment | Promise<Segment>;
-
-    abstract getTrips(): Trip[] | Promise<Trip[]>;
-
-    abstract trip(id: string): Trip | Promise<Trip>;
-
-    abstract getWaypoints(): Waypoint[] | Promise<Waypoint[]>;
-
-    abstract waypoint(id: string): Waypoint | Promise<Waypoint>;
-}
-
-export abstract class IMutation {
-    abstract createHike(createHikeInput?: CreateHikeInput): Hike | Promise<Hike>;
-
-    abstract createSegment(createSegmentInput?: CreateSegmentInput): Segment | Promise<Segment>;
-
-    abstract updateSegment(updateSegmentInput?: UpdateSegmentInput): Segment | Promise<Segment>;
-
-    abstract deleteSegment(deleteSegmentInput?: DeleteSegmentInput): boolean | Promise<boolean>;
-
-    abstract insertWaypoint(insertWaypointInput?: InsertWaypointInput): Segment | Promise<Segment>;
-
-    abstract updateWaypoint(updateWaypointInput?: UpdateWaypointInput): Segment | Promise<Segment>;
-
-    abstract deleteWaypoint(deleteWaypointInput?: DeleteWaypointInput): Segment | Promise<Segment>;
-
-    abstract createTrip(createTripInput?: CreateTripInput): Trip | Promise<Trip>;
-}
-
 export class Waypoint {
     id?: string;
     name?: string;
@@ -192,10 +121,26 @@ export class Segment {
     trip?: string;
 }
 
-export class Trip {
-    id?: string;
-    name?: string;
-    startDate?: Date;
-    finishDate?: Date;
-    hikes?: Hike[];
+export abstract class IQuery {
+    abstract getSegments(): Segment[] | Promise<Segment[]>;
+
+    abstract segment(id: string): Segment | Promise<Segment>;
+
+    abstract getWaypoints(): Waypoint[] | Promise<Waypoint[]>;
+
+    abstract waypoint(id: string): Waypoint | Promise<Waypoint>;
+}
+
+export abstract class IMutation {
+    abstract createSegment(createSegmentInput?: CreateSegmentInput): Segment | Promise<Segment>;
+
+    abstract updateSegment(updateSegmentInput?: UpdateSegmentInput): Segment | Promise<Segment>;
+
+    abstract deleteSegment(deleteSegmentInput?: DeleteSegmentInput): boolean | Promise<boolean>;
+
+    abstract insertWaypoint(insertWaypointInput?: InsertWaypointInput): Segment | Promise<Segment>;
+
+    abstract updateWaypoint(updateWaypointInput?: UpdateWaypointInput): Segment | Promise<Segment>;
+
+    abstract deleteWaypoint(deleteWaypointInput?: DeleteWaypointInput): Segment | Promise<Segment>;
 }
