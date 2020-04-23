@@ -1,4 +1,4 @@
-
+scalar Date
 
 enum Transport {
   Train
@@ -132,19 +132,3 @@ type Mutation {
   updateWaypoint(updateWaypointInput: UpdateWaypointInput): Segment
   deleteWaypoint(deleteWaypointInput: DeleteWaypointInput): Segment
 }
-
-# type Mutation {
-#   createSegment(createSegmentInput: CreateSegmentInput): Segment
-#   insertNewWaypoint(
-#     segmentId: ID
-#     waypointDetailsInput: CreateWaypointInput
-#     insertBefore: ID
-#     insertAfter: ID
-#   ): Segment
-#   insertExistingWaypoint(
-#     segmentId: ID
-#     waypointId: ID
-#     insertBefore: ID
-#     insertAfter: ID
-#   ): Segment
-# }

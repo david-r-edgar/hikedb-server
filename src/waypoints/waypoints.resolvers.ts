@@ -12,19 +12,19 @@ import { CreateWaypointDto } from './dto/create-waypoint.dto';
 export class WaypointsResolvers {
   constructor(private readonly waypointsService: WaypointsService) {}
 
-  @Query()
-  // @UseGuards(WaypointsGuard)
-  async getWaypoints() {
-    return this.waypointsService.findAll();
-  }
+  // @Query()
+  // // @UseGuards(WaypointsGuard)
+  // async getWaypoints() {
+  //   return this.waypointsService.findAll();
+  // }
 
-  @Query('waypoint')
-  async findOneById(
-    @Args('id')
-    id: string,
-  ): Promise<Waypoint> {
-    return this.waypointsService.findOneById(id);
-  }
+  // @Query('waypoint')
+  // async findOneById(
+  //   @Args('id')
+  //   id: string,
+  // ): Promise<Waypoint> {
+  //   return this.waypointsService.findOneById(id);
+  // }
 
   // @Mutation('createWaypoint')
   // async create(@Args('createWaypointInput') args: CreateWaypointDto): Promise<Waypoint> {

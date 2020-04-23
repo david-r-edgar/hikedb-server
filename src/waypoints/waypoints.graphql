@@ -1,22 +1,26 @@
-scalar Date
+#
 
-type Waypoint {
+type blah {
   id: ID
-  name: String
-  lat: Float
-  lng: Float
 }
 
-type Query {
-  getWaypoints: [Waypoint]
-  waypoint(id: ID!): Waypoint
-}
+# type Waypoint {
+#   id: ID
+#   name: String
+#   lat: Float
+#   lng: Float
+# }
 
-input WaypointDetailsInput {
-  name: String
-  lat: Float
-  lng: Float
-}
+# type Query {
+#   getWaypoints: [Waypoint]
+#   waypoint(id: ID!): Waypoint
+# }
+
+# input WaypointDetailsInput {
+#   name: String
+#   lat: Float
+#   lng: Float
+# }
 
 # type Mutation {
 #   createWaypoint(createWaypointInput: CreateWaypointInput): Waypoint#

@@ -125,10 +125,6 @@ export abstract class IQuery {
     abstract getSegments(): Segment[] | Promise<Segment[]>;
 
     abstract segment(id: string): Segment | Promise<Segment>;
-
-    abstract getWaypoints(): Waypoint[] | Promise<Waypoint[]>;
-
-    abstract waypoint(id: string): Waypoint | Promise<Waypoint>;
 }
 
 export abstract class IMutation {
@@ -143,4 +139,8 @@ export abstract class IMutation {
     abstract updateWaypoint(updateWaypointInput?: UpdateWaypointInput): Segment | Promise<Segment>;
 
     abstract deleteWaypoint(deleteWaypointInput?: DeleteWaypointInput): Segment | Promise<Segment>;
+}
+
+export class Blah {
+    id?: string;
 }
