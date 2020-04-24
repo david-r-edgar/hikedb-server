@@ -12,7 +12,7 @@ import {
   DeleteWaypointDto,
 } from './dto/create-segment.dto'
 import { CurrentUser } from '../users/decorators/current-user'
-import { User } from '../users/users.service'
+import { User } from '../users/interfaces/user.interface'
 
 @Resolver('Segment')
 export class SegmentsResolvers {
@@ -34,7 +34,6 @@ export class SegmentsResolvers {
     @Args('createSegmentInput') args: CreateSegmentDto,
     @CurrentUser() user: User,
   ): Promise<Segment> {
-    console.log('createSegment, user:', user)
     const createdSegment = await this.segmentsService.create(args)
     // pubSub.publish('segmentCreated', { segmentCreated: createdSegment });
     return createdSegment
