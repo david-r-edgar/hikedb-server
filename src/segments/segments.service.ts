@@ -1,10 +1,10 @@
-import { Model } from 'mongoose';
-import { Injectable } from '@nestjs/common';
-import { InjectModel } from '@nestjs/mongoose';
-import { Segment } from './interfaces/segment.interface';
-import { Waypoint } from '../waypoints/interfaces/waypoint.interface';
-import { Args } from '@nestjs/graphql';
-import { CreateSegmentDto, UpdateSegmentDto } from './dto/create-segment.dto';
+import { Model } from 'mongoose'
+import { Injectable } from '@nestjs/common'
+import { InjectModel } from '@nestjs/mongoose'
+import { Segment } from './interfaces/segment.interface'
+import { Waypoint } from '../waypoints/interfaces/waypoint.interface'
+import { Args } from '@nestjs/graphql'
+import { CreateSegmentDto, UpdateSegmentDto } from './dto/create-segment.dto'
 import { WaypointDetailsInput } from '../graphql'
 // const ObjectId = require('mongodb').ObjectID;
 
@@ -12,16 +12,16 @@ import { WaypointDetailsInput } from '../graphql'
 export class SegmentsService {
   constructor(
     @InjectModel('Segment') private segmentModel: Model<Segment>,
-    @InjectModel('Waypoint') private waypointModel: Model<Waypoint>
+    @InjectModel('Waypoint') private waypointModel: Model<Waypoint>,
   ) {}
 
   async create(createSegmentDto: CreateSegmentDto): Promise<Segment> {
-    const createdSegment = new this.segmentModel(createSegmentDto);
+    const createdSegment = new this.segmentModel(createSegmentDto)
     return createdSegment.save()
   }
 
   async findAll(): Promise<Segment[]> {
-    return this.segmentModel.find().exec();
+    return this.segmentModel.find().exec()
   }
 
   async findOneById(id: string): Promise<Segment> {
@@ -29,8 +29,12 @@ export class SegmentsService {
   }
 
   async update(args: UpdateSegmentDto): Promise<Segment> {
-    return this.segmentModel.findOneAndUpdate({ _id: args.id }, args.patch, { new: true }, err => {
-    })
+    return this.segmentModel.findOneAndUpdate(
+      { _id: args.id },
+      args.patch,
+      { new: true },
+      err => {},
+    )
   }
 
   async deleteById(id: string): Promise<Boolean> {
@@ -38,10 +42,11 @@ export class SegmentsService {
     return deleteResult.ok === 1
   }
 
-  async insertWaypoint(segmentId: string,
+  async insertWaypoint(
+    segmentId: string,
     waypointDetailsInput: WaypointDetailsInput,
     insertBefore: string,
-    insertAfter: string
+    insertAfter: string,
   ): Promise<Segment> {
     const segment = await this.findOneById(segmentId)
     const waypointToInsert = new this.waypointModel(waypointDetailsInput)
@@ -61,8 +66,8 @@ export class SegmentsService {
   async updateWaypoint(
     segmentId: string,
     waypointId: string,
-    waypointDetailsInput: WaypointDetailsInput
-  ) : Promise<Segment> {
+    waypointDetailsInput: WaypointDetailsInput,
+  ): Promise<Segment> {
     const segment = await this.findOneById(segmentId)
     const index = segment.waypoints.findIndex(wpt => wpt.id === waypointId)
     Object.assign(segment.waypoints[index], waypointDetailsInput)
@@ -70,7 +75,10 @@ export class SegmentsService {
     return segment
   }
 
-  async deleteWaypointById(segmentId: string, waypointId: string): Promise<Segment> {
+  async deleteWaypointById(
+    segmentId: string,
+    waypointId: string,
+  ): Promise<Segment> {
     const segment = await this.findOneById(segmentId)
 
     const index = segment.waypoints.findIndex(wpt => wpt.id === waypointId)

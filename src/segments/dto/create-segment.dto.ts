@@ -1,9 +1,5 @@
-import {
-  Min,
-  Max,
-  ValidateNested
-} from 'class-validator';
-import { Type } from 'class-transformer';
+import { Min, Max, ValidateNested } from 'class-validator'
+import { Type } from 'class-transformer'
 import {
   CreateSegmentInput,
   UpdateSegmentInput,
@@ -11,28 +7,26 @@ import {
   InsertWaypointInput,
   UpdateWaypointInput,
   DeleteWaypointInput,
-  WaypointDetailsInput
-} from '../../graphql';
+  WaypointDetailsInput,
+} from '../../graphql'
 
 export class CreateSegmentDto extends CreateSegmentInput {
   // @Max(10)
   // indexInDay: number;
 }
 
-export class UpdateSegmentDto extends UpdateSegmentInput {
-}
+export class UpdateSegmentDto extends UpdateSegmentInput {}
 
-export class DeleteSegmentDto extends DeleteSegmentInput {
-}
+export class DeleteSegmentDto extends DeleteSegmentInput {}
 
 export class WaypointDetailsDto extends WaypointDetailsInput {
   @Min(-90)
   @Max(90)
-  lat: number;
+  lat: number
 
   @Min(-180)
   @Max(180)
-  lng: number;
+  lng: number
 }
 
 export class InsertWaypointDto extends InsertWaypointInput {
@@ -41,8 +35,6 @@ export class InsertWaypointDto extends InsertWaypointInput {
   waypointDetailsInput: WaypointDetailsDto
 }
 
-export class UpdateWaypointDto extends UpdateWaypointInput {
-}
+export class UpdateWaypointDto extends UpdateWaypointInput {}
 
-export class DeleteWaypointDto extends DeleteWaypointInput {
-}
+export class DeleteWaypointDto extends DeleteWaypointInput {}
