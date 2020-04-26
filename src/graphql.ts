@@ -140,7 +140,3 @@ export abstract class IMutation {
 
     abstract deleteWaypoint(deleteWaypointInput?: DeleteWaypointInput): Segment | Promise<Segment>;
 }
-
-export class Blah {
-    id?: string;
-}
