@@ -7,7 +7,7 @@ import {
   InsertWaypointInput,
   UpdateWaypointInput,
   DeleteWaypointInput,
-  WaypointDetailsInput,
+  WaypointDetailsInput
 } from '../../graphql'
 
 export class CreateSegmentDto extends CreateSegmentInput {

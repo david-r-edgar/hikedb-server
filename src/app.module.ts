@@ -19,19 +19,19 @@ const mongoConnectURL = `mongodb+srv://${process.env.MONGOUSER}:${process.env.MO
       typePaths: ['./**/*.graphql'],
       definitions: {
         path: join(process.cwd(), 'src/graphql.ts'),
-        outputAs: 'class',
+        outputAs: 'class'
       },
-      context: ({ req }) => ({ req }),
+      context: ({ req }) => ({ req })
     }),
     MongooseModule.forRoot(mongoConnectURL, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
-      useFindAndModify: false,
+      useFindAndModify: false
     }),
     AuthModule,
-    UsersModule,
+    UsersModule
   ],
-  controllers: [AppController],
+  controllers: [AppController]
   // providers: [AppService],
 })
 export class AppModule {}

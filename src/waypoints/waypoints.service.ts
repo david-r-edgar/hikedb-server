@@ -7,7 +7,7 @@ import { CreateWaypointDto } from './dto/create-waypoint.dto'
 @Injectable()
 export class WaypointsService {
   constructor(
-    @InjectModel('Waypoint') private waypointModel: Model<Waypoint>,
+    @InjectModel('Waypoint') private waypointModel: Model<Waypoint>
   ) {}
 
   async create(createWaypointDto: CreateWaypointDto): Promise<Waypoint> {

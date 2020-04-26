@@ -12,7 +12,7 @@ import { WaypointDetailsInput } from '../graphql'
 export class SegmentsService {
   constructor(
     @InjectModel('Segment') private segmentModel: Model<Segment>,
-    @InjectModel('Waypoint') private waypointModel: Model<Waypoint>,
+    @InjectModel('Waypoint') private waypointModel: Model<Waypoint>
   ) {}
 
   async create(createSegmentDto: CreateSegmentDto): Promise<Segment> {
@@ -40,16 +40,16 @@ export class SegmentsService {
       { _id: args.id, userId: currentUserId },
       args.patch,
       { new: true },
-      err => {},
+      err => {}
     )
   }
 
-  async deleteById(
-    id: string,
-    currentUserId: number
-  ): Promise<Boolean> {
+  async deleteById(id: string, currentUserId: number): Promise<Boolean> {
     try {
-      const deleteResult = await this.segmentModel.deleteOne({ _id: id, userId: currentUserId })
+      const deleteResult = await this.segmentModel.deleteOne({
+        _id: id,
+        userId: currentUserId
+      })
       return deleteResult.ok === 1 && deleteResult.n === 1
     } catch (err) {}
     return false
@@ -66,7 +66,9 @@ export class SegmentsService {
       const segment = await this.findOneByIdForUser(segmentId, currentUserId)
       const waypointToInsert = new this.waypointModel(waypointDetailsInput)
       if (insertBefore) {
-        const index = segment.waypoints.findIndex(wpt => wpt.id === insertBefore)
+        const index = segment.waypoints.findIndex(
+          wpt => wpt.id === insertBefore
+        )
         segment.waypoints.splice(index, 0, waypointToInsert)
       } else if (insertAfter) {
         const index = segment.waypoints.findIndex(wpt => wpt.id === insertAfter)
@@ -76,15 +78,14 @@ export class SegmentsService {
       }
       segment.save()
       return segment
-    }
-    catch (err) {}
+    } catch (err) {}
   }
 
   async updateWaypoint(
     segmentId: string,
     waypointId: string,
     currentUserId: number,
-    waypointDetailsInput: WaypointDetailsInput,
+    waypointDetailsInput: WaypointDetailsInput
   ): Promise<Segment> {
     try {
       const segment = await this.findOneByIdForUser(segmentId, currentUserId)
@@ -92,8 +93,7 @@ export class SegmentsService {
       Object.assign(segment.waypoints[index], waypointDetailsInput)
       segment.save()
       return segment
-    }
-    catch (err) {}
+    } catch (err) {}
   }
 
   async deleteWaypointById(
@@ -109,7 +109,6 @@ export class SegmentsService {
 
       segment.save()
       return segment
-    }
-    catch (err) {}
+    } catch (err) {}
   }
 }

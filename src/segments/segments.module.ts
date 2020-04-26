@@ -12,6 +12,6 @@ import { UsersModule } from 'src/users/users.module'
     WaypointsModule,
     UsersModule
   ],
-  providers: [SegmentsService, SegmentsResolvers],
+  providers: [SegmentsService, SegmentsResolvers]
 })
 export class SegmentsModule {}

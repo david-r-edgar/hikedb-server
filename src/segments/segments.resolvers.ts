@@ -9,7 +9,7 @@ import {
   DeleteSegmentDto,
   InsertWaypointDto,
   UpdateWaypointDto,
-  DeleteWaypointDto,
+  DeleteWaypointDto
 } from './dto/create-segment.dto'
 import { CurrentUser } from '../users/decorators/current-user'
 import { User } from '../users/interfaces/user.interface'
@@ -65,7 +65,6 @@ export class SegmentsResolvers {
     @Args('insertWaypointInput') args: InsertWaypointDto,
     @CurrentUser() user: User
   ): Promise<Segment> {
-    console.log('insertWaypoint, user:', user)
     return await this.segmentsService.insertWaypoint(
       args.segmentId,
       user.userId,
@@ -85,7 +84,7 @@ export class SegmentsResolvers {
       args.segmentId,
       args.waypointId,
       user.userId,
-      args.waypointDetailsInput,
+      args.waypointDetailsInput
     )
   }
 
