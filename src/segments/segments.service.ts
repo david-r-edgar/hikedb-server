@@ -28,63 +28,88 @@ export class SegmentsService {
     return this.segmentModel.findOne({ _id: id }).exec()
   }
 
-  async update(args: UpdateSegmentDto): Promise<Segment> {
+  async findOneByIdForUser(id: string, userId: number): Promise<Segment> {
+    return this.segmentModel.findOne({ _id: id, userId }).exec()
+  }
+
+  async update(
+    args: UpdateSegmentDto,
+    currentUserId: number
+  ): Promise<Segment> {
     return this.segmentModel.findOneAndUpdate(
-      { _id: args.id },
+      { _id: args.id, userId: currentUserId },
       args.patch,
       { new: true },
       err => {},
     )
   }
 
-  async deleteById(id: string): Promise<Boolean> {
-    const deleteResult = await this.segmentModel.deleteOne({ _id: id })
-    return deleteResult.ok === 1
+  async deleteById(
+    id: string,
+    currentUserId: number
+  ): Promise<Boolean> {
+    try {
+      const deleteResult = await this.segmentModel.deleteOne({ _id: id, userId: currentUserId })
+      return deleteResult.ok === 1 && deleteResult.n === 1
+    } catch (err) {}
+    return false
   }
 
   async insertWaypoint(
     segmentId: string,
+    currentUserId: number,
     waypointDetailsInput: WaypointDetailsInput,
     insertBefore: string,
-    insertAfter: string,
+    insertAfter: string
   ): Promise<Segment> {
-    const segment = await this.findOneById(segmentId)
-    const waypointToInsert = new this.waypointModel(waypointDetailsInput)
-    if (insertBefore) {
-      const index = segment.waypoints.findIndex(wpt => wpt.id === insertBefore)
-      segment.waypoints.splice(index, 0, waypointToInsert)
-    } else if (insertAfter) {
-      const index = segment.waypoints.findIndex(wpt => wpt.id === insertAfter)
-      segment.waypoints.splice(index + 1, 0, waypointToInsert)
-    } else {
-      segment.waypoints.push(waypointToInsert)
+    try {
+      const segment = await this.findOneByIdForUser(segmentId, currentUserId)
+      const waypointToInsert = new this.waypointModel(waypointDetailsInput)
+      if (insertBefore) {
+        const index = segment.waypoints.findIndex(wpt => wpt.id === insertBefore)
+        segment.waypoints.splice(index, 0, waypointToInsert)
+      } else if (insertAfter) {
+        const index = segment.waypoints.findIndex(wpt => wpt.id === insertAfter)
+        segment.waypoints.splice(index + 1, 0, waypointToInsert)
+      } else {
+        segment.waypoints.push(waypointToInsert)
+      }
+      segment.save()
+      return segment
     }
-    segment.save()
-    return segment
+    catch (err) {}
   }
 
   async updateWaypoint(
     segmentId: string,
     waypointId: string,
+    currentUserId: number,
     waypointDetailsInput: WaypointDetailsInput,
   ): Promise<Segment> {
-    const segment = await this.findOneById(segmentId)
-    const index = segment.waypoints.findIndex(wpt => wpt.id === waypointId)
-    Object.assign(segment.waypoints[index], waypointDetailsInput)
-    segment.save()
-    return segment
+    try {
+      const segment = await this.findOneByIdForUser(segmentId, currentUserId)
+      const index = segment.waypoints.findIndex(wpt => wpt.id === waypointId)
+      Object.assign(segment.waypoints[index], waypointDetailsInput)
+      segment.save()
+      return segment
+    }
+    catch (err) {}
   }
 
   async deleteWaypointById(
     segmentId: string,
     waypointId: string,
+    currentUserId: number
   ): Promise<Segment> {
-    const segment = await this.findOneById(segmentId)
+    try {
+      const segment = await this.findOneByIdForUser(segmentId, currentUserId)
 
-    const index = segment.waypoints.findIndex(wpt => wpt.id === waypointId)
-    segment.waypoints.splice(index, 1)
+      const index = segment.waypoints.findIndex(wpt => wpt.id === waypointId)
+      segment.waypoints.splice(index, 1)
 
-    segment.save()
-    return segment
+      segment.save()
+      return segment
+    }
+    catch (err) {}
   }
 }

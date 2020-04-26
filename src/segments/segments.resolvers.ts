@@ -32,8 +32,9 @@ export class SegmentsResolvers {
   @UseGuards(GqlAuthGuard)
   async create(
     @Args('createSegmentInput') args: CreateSegmentDto,
-    @CurrentUser() user: User,
+    @CurrentUser() user: User
   ): Promise<Segment> {
+    args.userId = user.userId
     const createdSegment = await this.segmentsService.create(args)
     // pubSub.publish('segmentCreated', { segmentCreated: createdSegment });
     return createdSegment
@@ -43,8 +44,9 @@ export class SegmentsResolvers {
   @UseGuards(GqlAuthGuard)
   async updateSegment(
     @Args('updateSegmentInput') args: UpdateSegmentDto,
+    @CurrentUser() user: User
   ): Promise<Segment> {
-    const updatedSegment = await this.segmentsService.update(args)
+    const updatedSegment = await this.segmentsService.update(args, user.userId)
     return updatedSegment
   }
 
@@ -52,22 +54,24 @@ export class SegmentsResolvers {
   @UseGuards(GqlAuthGuard)
   async deleteSegment(
     @Args('deleteSegmentInput') args: DeleteSegmentDto,
+    @CurrentUser() user: User
   ): Promise<Boolean> {
-    return await this.segmentsService.deleteById(args.id)
+    return await this.segmentsService.deleteById(args.id, user.userId)
   }
 
   @Mutation()
   @UseGuards(GqlAuthGuard)
   async insertWaypoint(
     @Args('insertWaypointInput') args: InsertWaypointDto,
-    @CurrentUser() user: User,
+    @CurrentUser() user: User
   ): Promise<Segment> {
     console.log('insertWaypoint, user:', user)
     return await this.segmentsService.insertWaypoint(
       args.segmentId,
+      user.userId,
       args.waypointDetailsInput,
       args.insertBefore,
-      args.insertAfter,
+      args.insertAfter
     )
   }
 
@@ -75,10 +79,12 @@ export class SegmentsResolvers {
   @UseGuards(GqlAuthGuard)
   async updateWaypoint(
     @Args('updateWaypointInput') args: UpdateWaypointDto,
+    @CurrentUser() user: User
   ): Promise<Segment> {
     return await this.segmentsService.updateWaypoint(
       args.segmentId,
       args.waypointId,
+      user.userId,
       args.waypointDetailsInput,
     )
   }
@@ -87,10 +93,12 @@ export class SegmentsResolvers {
   @UseGuards(GqlAuthGuard)
   async deleteWaypoint(
     @Args('deleteWaypointInput') args: DeleteWaypointDto,
+    @CurrentUser() user: User
   ): Promise<Segment> {
     return await this.segmentsService.deleteWaypointById(
       args.segmentId,
       args.waypointId,
+      user.userId
     )
   }
 }

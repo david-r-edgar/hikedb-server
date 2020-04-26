@@ -2,6 +2,7 @@ import * as mongoose from 'mongoose'
 import { WaypointSchema } from '../../waypoints/schemas/waypoint.schema'
 
 export const SegmentSchema = new mongoose.Schema({
+  userId: Number,
   primaryDate: Date,
   indexInDay: Number,
   startDate: Date,
@@ -16,5 +17,5 @@ export const SegmentSchema = new mongoose.Schema({
   waypoints: [WaypointSchema],
   tags: [String],
   hike: String,
-  trip: String,
+  trip: String
 })

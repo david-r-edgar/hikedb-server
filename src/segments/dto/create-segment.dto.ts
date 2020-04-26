@@ -11,8 +11,7 @@ import {
 } from '../../graphql'
 
 export class CreateSegmentDto extends CreateSegmentInput {
-  // @Max(10)
-  // indexInDay: number;
+  userId: number
 }
 
 export class UpdateSegmentDto extends UpdateSegmentInput {}

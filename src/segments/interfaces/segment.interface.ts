@@ -2,6 +2,7 @@ import { Document } from 'mongoose'
 import { Waypoint } from '../../waypoints/interfaces/waypoint.interface'
 
 export interface Segment extends Document {
+  readonly userId: number
   readonly primaryDate: Date
   readonly indexInDay: number
   readonly startDate: Date
